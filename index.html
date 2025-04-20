@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<!-- הגדרת מסמך HTML -->
+
+<html lang="en">
+<!-- הגדרת השפה לאנגלית במסמך-->
+
+<head>
+<!-- ראש המסמך -->
+
+    <meta charset="UTF-8">
+    <!--הגדרה מובנת   -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <!-- הגדרה לתאימות עם אינטרנט אקספלורר -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- הגדרת תצוגת המסך למכשירים ניידים -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- קישור לספריית Bootstrap CSS -->
+
+    <style>
+    
+
+        body {
+            background-image: url('https://i.pinimg.com/736x/ae/fa/62/aefa62f6195eedad06ccaf7d083e3f71.jpg');
+            /* הגדרת תמונת רקע */
+
+            background-size: cover;
+            /* הגדרה שתמונת הרקע תכסה את כל הדף */
+
+            background-attachment: fixed;
+            /* הגדרה שתמונת הרקע לא תזוז בגלילת האתר*/
+
+            display: flex;
+            /* הצגה גמישה*/
+
+            justify-content: center;
+            /* יישור אופקי למרכז הדף*/
+
+            align-items: center;
+            /* יישור אנכי למרכז הדף*/
+
+            height: 100vh;
+            /* גובה הדף בגודל כל הדף*/
+
+            margin: 0;
+            /* ביטול השוליים */
+
+            flex-direction: column;
+            /* סידור אלמנטים בצורה אנכית */
+        }
+        
+        .container {
+            display: flex;
+            /* הגדרת המכולה לגמישות בהצגה*/
+
+            flex-direction: column;
+            /* סידור אלמנטים במכולה בצורה אנכית */
+
+            align-items: center;
+            /* יישור אופקי למרכז */
+
+            justify-content: center;
+            /* יישור אנכי למרכז */
+
+            height: 100vh;
+            /* גובה המכולה בגודל מלא*/
+        }
+        
+        .btn {
+            width: 200px;
+            /* הגדרת רוחב הכפתור ל200 פיקסלים*/
+
+            height: 60px;
+            /* הגדרת גובה הכפתור ל 60 פיקסלים */
+
+            font-size: 20px;
+            /* גודל הטקסט ל20 פיקסלים*/
+
+            margin: 10px 0;
+            /* הגדרת שוליים בכפתור למעלה ולמטה בגודל 10 פיקסלים*/
+        }
+        
+        .modal-content {
+            background: rgba(255, 255, 255, 0.9);
+            /* הגדרת רקע החלון מודאל לצבע לבן קצת שקוף*/
+        }
+        
+        .button, button {
+            background-color: #fff;
+            /* הגדרת צבע לרקע הכפתור לצבע לבן*/
+
+            border: 0 solid #e2e8f0;
+            /* גבולות לכפתור*/
+
+            border-radius: 1.5rem;
+            /* הגדרת פינות הכפתור לפינות מעוגלות*/
+
+            box-sizing: border-box;
+            /* גודל תיבת המודאל */
+
+            color: #0d172a;
+            /* הגדרת צבע הטקסט בכפתור לצבע שחור*/
+
+            cursor: pointer;
+            /* כאשר העכבר על הכפתור הוא ישנה צורה*/
+
+            display: block;
+            /* הגדרת הכפתור כבלוק*/
+
+            font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            /* הגדרת פונט הטקסט*/
+
+            font-size: 1.1rem;
+            /* הגדרת גודל הפונט של הטסקט*/
+
+            font-weight: 600;
+            /* עובי הפונט*/
+
+            line-height: 1;
+            /* הגדרת גובה הטקסט בכפתור*/
+
+            margin-bottom: 1rem;
+            /* הגדרת שוליים למטה*/
+
+            padding: 1rem 1.6rem;
+            /* מרכוז הכפתור*/
+
+            text-align: center;
+            /* הגדרה שהטסקט יתיישר למרכז*/
+
+            text-decoration: none;
+            /* הורדת קו תחתון מתחת לטקסט*/
+
+            transition: all .1s cubic-bezier(.4, 0, .2, 1);
+            /* הגדרת אנימציה גמישה לשינויים*/
+
+            box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+            /* הגדרת צל עדין לכפתור*/
+
+            user-select: none;
+            /* שהמשתמש לא יוכל לבחור*/
+
+            -webkit-user-select: none;
+            /* מניעת המשתמש מבחירת טקסט  */
+
+            touch-action: manipulation;
+            /* התאמה לכל מסך*/
+        }
+        
+        .button:hover, button:hover {
+            background-color: #1e293b;
+            /* הגדרת צבע שונה לכפתור כאשר העכבר מונח עליו*/
+
+            color: #fff;
+            /* הגדרת צבע טקסט בכפתור כאשר העכבר מונח עליו*/
+        }
+        
+        @media (min-width: 768px) {
+            /* התאמת העיצוב למסכים גדולים*/
+
+            .button, button {
+                font-size: 1.125rem;
+                /* הגדרת גודל טקסט מתאים למסכים גדולים*/
+
+                padding: 1rem 2rem;
+                /* הצמדה לתוך מסכים גדולים*/
+            }
+        }
+    </style>
+    <!-- סיום הגדרת עיצוב תוכן הדף-->
+
+    <title>Document</title>
+    <!-- כותרת הדף -->
+</head>
+<!-- סיום הגדרות ראשיות-->
+
+<body>
+<!-- הגדרת גוף הדף והתוכן בו-->
+
+    <div class="container">
+    <!-- מכולה מרכזית -->
+
+        <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#connectingmodal">
+            Connect!
+        </button>
+        <!-- כפתור התחברות שפותח חלון מודאל בלחיצה-->
+
+        <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signupModal">
+            Sign Up Now!
+        </button>
+        <!-- כפתור הרשמה שפותח חלון מודאל בלחיצה-->
+    </div>
+    <!-- סיום המכולה המרכזית-->
+
+    <div class="modal fade" id="connectingmodal" tabindex="-1" aria-labelledby="connectingmodalLabel" aria-hidden="true">
+    <!-- הגדרת תוכן חלון מודאל להתחברות-->
+
+        <div class="modal-dialog">
+        <!-- מיכל דיאלוג למודאל-->
+
+            <div class="modal-content">
+            <!-- תוכן המודל -->
+
+                <div class="modal-header">
+                <!-- כותרת המודל -->
+
+                    <h5 class="modal-title" id="connectingmodalLabel">Connect</h5>
+                    <!-- הגדרת כותרת במודל-->
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- כפתור סגירה של המודל -->
+                </div>
+                <!-- סיום כותרת המודל -->
+
+                <div class="modal-body">
+                <!-- גוף המודל -->
+
+                    <form class="row g-3" id="registrationForm">
+                    <!-- טופס התחברות -->
+
+                        <div class="col-auto">
+                        <!-- עמודה למייל-->
+
+                            <label for="Email2" class="visually-hidden">Email</label>
+                            <!-- טקסט כותרת להכנסת המייל-->
+
+                            <input type="email" class="form-control" id="Email2" placeholder="Email@gmail.com">
+                            <!-- מקום לקלוט את המייל-->
+                        </div>
+                        <!-- סיום עמודת המייל במודל-->
+
+                        <div class="col-auto">
+                        <!-- עמודה לסיסמה-->
+
+                            <label for="Password2" class="visually-hidden">Password</label>
+                            <!-- כותרת טקסט להכנסת הסיסמה-->
+
+                            <input type="password" class="form-control" id="Password2" placeholder="Password">
+                            <!-- מקום לקלוט את הסיסמה-->
+                        </div>
+                        <!-- סיום עמודת הסיסמה במודל-->
+
+                        <div class="alert alert-danger" id="connectingerror" role="alert" style="display: none;">
+                            connecting error
+                        </div>
+                        <!-- הודעת שגיאה והסתרתה-->
+
+                        <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="connect()">Connect</button>
+                        <!-- כפתור לחיצה להתחברות-->
+                    </form>
+                    <!-- סיום טופס ההתחברות -->
+                </div>
+                <!-- סיום גוף המודל -->
+            </div>
+            <!-- סיום תוכן המודל -->
+        </div>
+        <!-- סיום מיכל הדיאלוג -->
+    </div>
+    <!-- סיום מודל ההתחברות -->
+
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <!-- הגדרת תוכן חלון מודל להרשמה-->
+
+        <div class="modal-dialog">
+        <!-- מיכל הדיאלוג של המודל -->
+
+            <div class="modal-content">
+            <!-- תוכן המודל -->
+
+                <div class="modal-header">
+                <!-- כותרת המודל -->
+
+                    <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+                    <!-- כותרת הרשמה למודל-->
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- כפתור סגירה של המודל -->
+                </div>
+                <!-- סיום כותרת המודל -->
+
+                <div class="modal-body">
+                <!-- הגדרת גוף המודל-->
+
+                    <form>
+                    <!-- הגדרת טופס להרשמה-->
+
+                        <div class="mb-3">
+                        <!-- כמה קלטים עם רווחים מתחת לכל קלט-->
+
+                            <label for="email" class="form-label">Email address</label>
+                            <!-- טקסט להכנסת מייל-->
+
+                            <input type="email" class="form-control" id="email" name="email" autocomplete="email" aria-describedby="emailHelp">
+                            <!-- מיקום לקליטת המייל-->
+
+                        </div>
+                        <!-- סיום קליטת המייל -->
+
+                        <div class="mb-3">
+                        <!-- עוד קלטים עם רווחים מתחת לכל קלט עבור הסיסמה-->
+
+                            <label for="password" class="form-label">Password</label>
+                            <!-- טקסט להכנסת סיסמה-->
+
+                            <input type="password" class="form-control" name="password" autocomplete="current-password" id="password">
+                            <!-- מיקום לקליטת הסיסמה-->
+                        </div>
+                        <!-- סיום הקלטים לסיסמא-->
+
+                        <div class="mb-3 form-check">
+                        <!-- קבוצה למרובע סימון-->
+
+                            <input type="checkbox" class="form-check-input" id="Check1">
+                            <!-- המרובע עצמו-->
+
+                            <label class="form-check-label" for="Check1">Check me out</label>
+                            <!-- טקסט ליד המרובע-->
+                        </div>
+                        <!-- סיום הגדרת מרובע הסימון-->
+
+                        <div class="alert alert-danger" id="error" role="alert" style="display: none;">
+                            error
+                        </div>
+                        <!-- הודעת שגיאה מוסתרת -->
+
+                        <button type="button" class="btn btn-primary" id="liveAlertBtn2" onclick="sign()">Submit</button>
+                        <!-- כפתור שליחה -->
+                    </form>
+                    <!-- סיום טופס ההרשמה -->
+                </div>
+                <!-- סיום גוף המודל -->
+            </div>
+            <!-- סיום תוכן המודל -->
+        </div>
+        <!-- סיום מיכל הדיאלוג -->
+    </div>
+    <!-- סיום מודל ההרשמה -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- קישור לקובץ JavaScript של Bootstrap -->
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+    <!-- קישור לספריית הבסיס של Firebase -->
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth-compat.js"></script>
+    <!-- קישור לספריית האימות של Firebase -->
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-storage-compat.js"></script>
+    <!-- קישור לספריית האחסון של Firebase -->
+
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-database-compat.js"></script>
+    <!-- קישור לספריית  הנתונים של Firebase -->
+
+
+    <script>
+    <!-- תחילת הגדרת פקודות JS -->
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBISujiHCOAhlhmXBvoq4U4usbFr7CDTwc",
+            /* מפתח API של Firebase */
+
+            authDomain: "tecnlogic-dance.firebaseapp.com",
+            /* אימות הפרוייקט*/
+
+            projectId: "tecnlogic-dance",
+            /* זיהוי הפרוייקט */
+
+            storageBucket: "tecnlogic-dance.firebasestorage.app",
+            /* מיקום אחסון הקבצים */
+
+            messagingSenderId: "295263431339",
+            /* מזהה שליחת הודעות*/
+
+            appId: "1:295263431339:web:0576ec5a6512cf7d9e25ee"
+            /* מזהה את האפליקציה*/
+        };
+        /* סיום הגדרת קונפיגורציית Firebase */
+
+        const app = firebase.initializeApp(firebaseConfig);
+        /* אתחול אפליקציית Firebase */
+
+        function sign() {
+        /* פונקציה להרשמת משתמש חדש */
+
+            document.getElementById("error").style.display = "none";
+            /* הסתרת הודעת השגיאה */
+
+            const email = document.getElementById("email").value;
+            /* קבלת מידע המייל מהטופס*/
+
+            const password = document.getElementById("password").value;
+            /* קבלת מידע הסיסמה מהטופס*/
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+            /* יצירת משתמש חדש ב-Firebase */
+
+                .then((userCredential) => {
+                /* אם מצליחים להירשם*/
+
+                    const user = userCredential.user;
+                    /* קבלת אובייקט המשתמש שנוצר */
+
+                    document.getElementById("error").style.display = "none";
+                    /* בדיקה שהודעת השגיאה לא מוצגת*/
+                })
+                /* סיום אופציית הצלחה להרשמה*/
+
+                .catch((error) => {
+                /* אם יש שגיאה בהרשמה*/
+
+                    const errorMessage = error.message;
+                    /* קבלת הודעת השגיאה*/
+
+                    document.getElementById("error").style.display = "block";
+                    /* הצגת אלמנט השגיאה */
+
+                    document.getElementById("error").innerText = errorMessage;
+                    /* הצגת הודעת השגיאה באלמנט */
+                });
+                /* סיום אופציית שגיאה בהרשמה*/
+        }
+        /* סיום פונקציית ההרשמה */
+
+        function connect() {
+        /* פונקציה להתחברות המשתמש */
+
+            const email = document.getElementById("Email2").value;
+            /* קבלת המידע של המייל */
+
+            const password = document.getElementById("Password2").value;
+            /* קבלת המידע של הסיסמה */
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+            /* ניסיון התחברות ל-Firebase */
+
+            .then((userCredential) => {
+            /* אם ההתחברות עבדה בהצלחה*/
+
+                var user = userCredential.user;
+                /* קבלת אובייקט המשתמש*/
+
+                window.location.href = "/home.html";
+                /* זריקת המשתמש לעמוד אחר באתר*/
+            })
+            /* סיום הגדרת התחברות בהצלחה*/
+
+            .catch((error) => {
+            /* אם יש שגיאה בהתחברות*/
+
+                console.error("Error signing in:", error);
+                /* הצגת הודעות שגיאה בקונסול*/
+            });
+            /* סיום הגדרת אופציית שגיאה*/
+        }
+        /* סיום פונקציית ההתחברות */
+
+    </script>
+    <!-- סיום הגדרת JS -->
+</body>
+<!-- סיום הגדרת גוף הדף-->
+</html>
+<!-- סיום תג HTML -->
